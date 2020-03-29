@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  test:
+  build:
     docker:
       - image: rust:1
     steps:
@@ -17,7 +17,7 @@ jobs:
             - v4-cargo-cache-{{ arch }}-{{ checksum "Cargo.lock" }}
       - run:
           name: Build all targets
-          command: cargo build --all --all-targets
+          command: cargo build
       - save_cache:
           paths:
             - /usr/local/cargo/registry
@@ -26,5 +26,11 @@ jobs:
             - target/debug/deps
           key: v4-cargo-cache-{{ arch }}-{{ checksum "Cargo.lock" }}
       - run:
-          name: Run all tests
-          command: cargo test --all
+          name: Build puzzle pages
+          command: cargo run
+
+workflows:
+  version: 2
+  one_and_two:
+    jobs:
+      - build
