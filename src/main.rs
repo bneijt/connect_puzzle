@@ -1,11 +1,11 @@
 extern crate cairo;
 extern crate rand_chacha;
-use cairo::{Context, FontSlant, FontWeight, Format, ImageSurface};
+use cairo::{Context, FontSlant, FontWeight, ImageSurface};
 use rand::seq::SliceRandom;
-use rand::{Rng, SeedableRng};
+use rand::{SeedableRng};
 use std::f64::consts::PI;
 use std::fs::File;
-use std::{fs, io, path};
+use std::{fs, path};
 
 fn image_pairs_from(path: &path::Path) -> Vec<(String, String)> {
     let pieces_directory = fs::read_dir(path).expect("given path must exist");
@@ -19,8 +19,6 @@ fn image_pairs_from(path: &path::Path) -> Vec<(String, String)> {
                 piece_path.replace("_fst.png", "_snd.png").into(),
             ));
         }
-        // let piece_path: path::Path = puzzle_dir.as_path();
-        // println!("Loading puzzle {:?}", puzzle_path.file_name().unwrap());
     }
     return pieces;
 }
@@ -49,12 +47,6 @@ fn main() {
         .zip(box_top_lefts[8..].iter())
         .collect();
 
-    println!("{:?}", box_pairs);
-    let dot_locations: Vec<_> = box_top_lefts
-        .iter()
-        .map(|(x, y)| (x + box_width / 2.0, y + box_height))
-        .collect();
-
     let dot_pairs: Vec<_> = box_pairs
         .iter()
         .map(|((x1, y1), (x2, y2))| {
@@ -64,8 +56,6 @@ fn main() {
             )
         })
         .collect();
-
-    println!("{:?}", dot_pairs);
 
     let surface = cairo::PdfSurface::new(a4_width, a4_height, "connections.pdf")
         .expect("Can't create surface");
