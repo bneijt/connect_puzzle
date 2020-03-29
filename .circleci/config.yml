@@ -28,11 +28,15 @@ jobs:
       - run:
           name: Build puzzle pages
           command: cargo run
+      - run:
+          command: |
+            mkdir -p /tmp/puzzles
+            cp *.pdf /tmp/puzzles
       - store_artifacts:
-          path: "*.pdf"
+          path: /tmp/puzzles
 
 workflows:
   version: 2
-  one_and_two:
+  main:
     jobs:
       - build
