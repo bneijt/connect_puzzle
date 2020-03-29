@@ -30,10 +30,10 @@ jobs:
           command: cargo run
       - run:
           command: |
-            mkdir -p puzzles
-            cp *.pdf puzzles
+            mkdir -p puzzle_pages
+            cp *.pdf puzzle_pages
       - store_artifacts:
-          path: puzzles
+          path: puzzle_pages
 
 workflows:
   version: 2
