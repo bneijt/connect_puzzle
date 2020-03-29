@@ -13,7 +13,6 @@ fn image_pairs_from(path: &path::Path) -> Vec<(String, String)> {
     for entry in pieces_directory {
         let entry_path = entry.unwrap().path();
         let piece_path = entry_path.as_path().to_str().unwrap();
-        println!("{:?}", piece_path);
         if piece_path.ends_with("_fst.png") {
             pieces.push((
                 piece_path.into(),
@@ -112,8 +111,6 @@ fn main() {
         for entries in images_and_dots {
             let (((x1, y1), (x2, y2)), _) = entries;
             let (_, (image_a, image_b)) = entries;
-
-            println!("{:?} <-> {:?}", image_a, image_b);
 
             let place_image = |image_path: &String, left_top_x: f64, left_top_y: f64| {
                 let mut image_file = File::open(image_path).expect("Could not open file");
