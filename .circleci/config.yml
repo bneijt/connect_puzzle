@@ -28,6 +28,8 @@ jobs:
       - run:
           name: Build puzzle pages
           command: cargo run
+      - store_artifacts:
+          path: "*.pdf"
 
 workflows:
   version: 2
