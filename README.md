@@ -1,9 +1,15 @@
-Bought a new multi-meter because my old one broke so had to come up with a project to use it.
-
-The new one I bought had a cool continuity beep measurement feature, so I decided to build a connect the dots electric puzzle.
 
 This repository holds the code to generate puzzles for printing on A4 paper.
 
-Puzzles are build on CircleCI and released as artifacts there:
 
-https://app.circleci.com/pipelines/github/bneijt/connect_puzzle/latest/workflows/ff535939-fb29-49ae-a105-5e6156aa81bd/jobs/7/artifacts
+Creating new puzzles
+---------------------
+
+- [Install rust langauge](https://www.rust-lang.org/tools/install)
+- Create a new folder in `puzzles` with the name of your puzzle
+- Add a `README.md` file with information on where the images are from, to verify that they are licensed properly to use as a public available puzzle.
+- Add 16 images in the folder: 8 ending with `_fst.png` (first) and 8 ending with `_snd.png` (second). The first and second images will form pairs on the puzzle page.
+- Execute `cargo run` inside the project folder, this will generate a `.pdf` file with the same name as your puzzle directory.
+
+If you know how, please add the puzzle to this github repository and/or open a pull-request. You can also simply email me a zip with the images.
+
